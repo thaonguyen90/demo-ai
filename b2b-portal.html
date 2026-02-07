@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Travel Engine - PM Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .nav-active { border-left: 4px solid #2563eb; background: #eff6ff; color: #2563eb; }
+        .page { display: none; }
+        .page-active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <aside class="fixed inset-y-0 left-0 w-64 bg-white border-r shadow-sm z-50">
+        <div class="p-6 border-b text-center">
+            <h1 class="text-xl font-black text-blue-600 tracking-tighter">TRAVEL<span class="text-slate-400">CORE</span></h1>
+            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-widest mt-1">B2B Management System</p>
+        </div>
+        <nav class="mt-6">
+            <a href="#" onclick="showPage('dashboard')" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition nav-item nav-active" id="nav-dashboard">
+                <i class="fa-solid fa-chart-line w-6"></i> <span class="text-sm font-semibold">Bảng điều khiển</span>
+            </a>
+            <a href="#" onclick="showPage('inventory')" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition nav-item" id="nav-inventory">
+                <i class="fa-solid fa-earth-asia w-6"></i> <span class="text-sm font-semibold">Kho Tour API</span>
+            </a>
+            <a href="#" onclick="showPage('bookings')" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition nav-item" id="nav-bookings">
+                <i class="fa-solid fa-receipt w-6"></i> <span class="text-sm font-semibold">Quản lý Booking</span>
+            </a>
+            <a href="#" onclick="showPage('whitelabel')" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition nav-item" id="nav-whitelabel">
+                <i class="fa-solid fa-wand-magic-sparkles w-6"></i> <span class="text-sm font-semibold">Cấu hình Whitelabel</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="ml-64 min-h-screen">
+        
+        <header class="bg-white border-b px-8 py-4 flex justify-between items-center sticky top-0 z-40">
+            <h2 id="page-title" class="text-lg font-bold text-gray-800">Bảng điều khiển</h2>
+            <div class="flex items-center gap-6">
+                <div class="text-right border-r pr-4">
+                    <p class="text-xs text-gray-400 font-bold uppercase">Công nợ đại lý</p>
+                    <p class="text-sm font-black text-green-600">45.500.000 VNĐ</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center font-bold text-xs">GT</div>
+                    <span class="text-sm font-medium">Global Travel</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-8">
+
+            <section id="dashboard" class="page page-active">
+                <div class="grid grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <p class="text-gray-400 text-xs font-bold uppercase">Booking mới</p>
+                        <h3 class="text-2xl font-black mt-1">12</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <p class="text-gray-400 text-xs font-bold uppercase">Đang Hold (Sắp hết hạn)</p>
+                        <h3 class="text-2xl font-black mt-1 text-orange-500">03</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <p class="text-gray-400 text-xs font-bold uppercase">Doanh thu tháng</p>
+                        <h3 class="text-2xl font-black mt-1">210M</h3>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <p class="text-gray-400 text-xs font-bold uppercase">Hoa hồng tạm tính</p>
+                        <h3 class="text-2xl font-black mt-1 text-blue-600">18.5M</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section id="inventory" class="page">
+                <div class="bg-white p-6 rounded-xl shadow-sm border mb-6 flex gap-4">
+                    <input type="text" placeholder="Điểm đến (Hàn Quốc, Phú Quốc...)" class="flex-1 border rounded-lg px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-100">
+                    <input type="date" class="border rounded-lg px-4 py-2 text-sm outline-none">
+                    <button class="bg-blue-600 text-white px-8 py-2 rounded-lg font-bold text-sm hover:bg-blue-700">Tìm kiếm</button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl border p-4 flex gap-6 hover:border-blue-300 transition cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=150&q=80" class="w-40 h-28 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h4 class="font-bold text-lg text-slate-800">London - Paris - Luxembourg - Brussels - Amsterdam</h4>
+                                <span class="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500 uppercase font-bold">API: EuroTravel</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1"><i class="fa-regular fa-clock"></i> 8 Ngày 7 Đêm | Khởi hành: 15/10/2024</p>
+                            <div class="mt-4 flex justify-between items-end">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">Giá đại lý (Net)</span>
+                                    <span class="text-xl font-black text-blue-600">42.500.000 VNĐ</span>
+                                </div>
+                                <div class="space-x-2">
+                                    <button class="text-blue-600 font-bold text-sm px-4 py-2 border border-blue-600 rounded-lg">Xuất Whitelabel</button>
+                                    <button class="bg-orange-500 text-white font-bold text-sm px-4 py-2 rounded-lg">Giữ chỗ ngay</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bookings" class="page">
+                <div class="bg-white rounded-xl shadow-sm border overflow-hidden">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead class="bg-slate-50 border-b">
+                            <tr>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Mã Booking</th>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Tên Tour</th>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Khách hàng</th>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Trạng thái</th>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Hết hạn Hold</th>
+                                <th class="p-4 font-bold text-gray-600 uppercase text-[10px]">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-slate-50">
+                                <td class="p-4 font-bold text-blue-600">#BK9901</td>
+                                <td class="p-4 font-medium italic">Khám phá Tây Bắc (4N3Đ)</td>
+                                <td class="p-4">Nguyễn Văn A</td>
+                                <td class="p-4"><span class="bg-orange-100 text-orange-600 px-2 py-1 rounded-full text-[10px] font-bold">WAITING PAYMENT</span></td>
+                                <td class="p-4 font-mono text-red-500 font-bold">14:22:10</td>
+                                <td class="p-4"><button class="bg-blue-600 text-white text-[10px] px-3 py-1 rounded font-bold uppercase">Thanh toán</button></td>
+                            </tr>
+                            <tr class="border-b hover:bg-slate-50">
+                                <td class="p-4 font-bold text-blue-600">#BK9905</td>
+                                <td class="p-4 font-medium italic">Dubai - Sa mạc huyền bí</td>
+                                <td class="p-4">Trần Thị B</td>
+                                <td class="p-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-[10px] font-bold">CONFIRMED</span></td>
+                                <td class="p-4 text-gray-400">--</td>
+                                <td class="p-4"><button class="bg-gray-100 text-gray-600 text-[10px] px-3 py-1 rounded font-bold uppercase">In vé</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="whitelabel" class="page">
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-sm border">
+                        <h3 class="font-bold text-xl mb-6">Tùy chỉnh thương hiệu</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Logo Đại lý (Dùng cho PDF & Link)</label>
+                                <div class="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center bg-gray-50 hover:border-blue-400 transition cursor-pointer">
+                                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-300"></i>
+                                    <p class="text-sm text-gray-500 mt-2 font-medium">Kéo thả hoặc click để upload</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Tên đại lý hiển thị</label>
+                                    <input type="text" value="Global Travel Co." class="w-full border rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-blue-100">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Số điện thoại</label>
+                                    <input type="text" value="0988 777 666" class="w-full border rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-blue-100">
+                                </div>
+                            </div>
+                            <button class="bg-blue-600 text-white w-full py-3 rounded-xl font-bold hover:shadow-lg transition">Cập nhật Whitelabel</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800 p-8 rounded-xl text-white">
+                        <h3 class="font-bold text-xl mb-6 flex items-center gap-2"><i class="fa-solid fa-magnifying-glass"></i> Xem trước (Preview)</h3>
+                        <div class="bg-white rounded shadow-inner p-6 text-slate-800 scale-95 origin-top">
+                            <div class="flex justify-between border-b pb-4 mb-4">
+                                <div class="bg-blue-100 px-4 py-2 rounded font-black text-blue-600 italic">LOGO ĐẠI LÝ</div>
+                                <div class="text-right text-[10px]">
+                                    <p class="font-bold uppercase">Global Travel Co.</p>
+                                    <p>Hotline: 0988 777 666</p>
+                                    <p>Website: www.globaltravel.com</p>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-sm uppercase">CHƯƠNG TRÌNH TOUR: DUBAI 5 NGÀY 4 ĐÊM</h4>
+                            <div class="h-32 bg-gray-200 my-4 rounded"></div>
+                            <div class="space-y-2">
+                                <div class="h-2 bg-gray-100 rounded w-full"></div>
+                                <div class="h-2 bg-gray-100 rounded w-5/6"></div>
+                                <div class="h-2 bg-gray-100 rounded w-4/6"></div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-4 italic text-center text-balance">* Đây là giao diện khách hàng cuối của bạn sẽ nhìn thấy.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('page-active'));
+            // Remove active class from nav
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('nav-active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('page-active');
+            document.getElementById('nav-' + pageId).classList.add('nav-active');
+            
+            // Update Title
+            const titles = {
+                dashboard: 'Bảng điều khiển',
+                inventory: 'Kho hàng Tour (API Real-time)',
+                bookings: 'Quản lý Đặt chỗ & Giữ chỗ',
+                whitelabel: 'Cấu hình Thương hiệu riêng (Whitelabel)'
+            };
+            document.getElementById('page-title').innerText = titles[pageId];
+        }
+    </script>
+</body>
+</html>
